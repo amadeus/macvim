@@ -194,6 +194,8 @@ enum {
     AddToMRUMsgID,
     BackingPropertiesChangedMsgID,
     SetBlurRadiusMsgID,
+    EnableLigaturesMsgID,
+    DisableLigaturesMsgID,
     LastMsgID   // NOTE: MUST BE LAST MESSAGE IN ENUM!
 };
 

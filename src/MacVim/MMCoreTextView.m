@@ -132,6 +132,7 @@ defaultAdvanceForFont(NSFont *font)
     [self registerForDraggedTypes:[NSArray arrayWithObjects:
             NSFilenamesPboardType, NSStringPboardType, nil]];
 
+    ligatures = NO;
     return self;
 }
 
@@ -374,6 +375,11 @@ defaultAdvanceForFont(NSFont *font)
 - (void)setAntialias:(BOOL)state
 {
     antialias = state;
+}
+
+- (void)setLigatures:(BOOL)state
+{
+    ligatures = state;
 }
 
 - (void)setImControl:(BOOL)enable
@@ -1339,7 +1345,7 @@ recurseDraw(const unichar *chars, CGGlyph *glyphs, CGPoint *positions,
     }
 
     CGContextSetTextPosition(context, x, y+fontDescent);
-    recurseDraw(chars, glyphs, positions, length, context, fontRef, fontCache);
+    recurseDraw(chars, glyphs, positions, length, context, fontRef, fontCache, ligatures);
 
     CFRelease(fontRef);
     CGContextRestoreGState(context);

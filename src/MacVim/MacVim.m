@@ -101,6 +101,8 @@ char *MessageStrings[] =
     "AddToMRUMsgID",
     "BackingPropertiesChangedMsgID",
     "SetBlurRadiusMsgID",
+    "EnableLigaturesMsgID",
+    "DisableLigaturesMsgID",
     "END OF MESSAGE IDs"     // NOTE: Must be last!
 };
 

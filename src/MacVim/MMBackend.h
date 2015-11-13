@@ -136,6 +136,7 @@ extern NSTimeInterval MMBalloonEvalInternalDelay;
 - (void)setFullScreenBackgroundColor:(int)color;
 
 - (void)setAntialias:(BOOL)antialias;
+- (void)setLigatures:(BOOL)ligatures;
 
 #ifdef FEAT_TRANSPARENCY
 - (void)setBlurRadius:(int)radius;

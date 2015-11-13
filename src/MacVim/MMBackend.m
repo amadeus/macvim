@@ -1180,7 +1180,14 @@ extern GuiFont gui_mch_retain_font(GuiFont font);
     [self queueMessage:msgid data:nil];
 }
 
-#ifdef FEAT_TRANSPARENCY
+- (void)setLigatures:(BOOL)ligatures
+{
+    int msgid = ligatures ? EnableLigaturesMsgID : DisableLigaturesMsgID;
+
+    [self queueMessage:msgid data:nil];
+}
+
+#ifdef BLUR_TRANSPARENCY
 
 - (void)setBlurRadius:(int)radius
 {
@@ -1354,7 +1361,7 @@ extern GuiFont gui_mch_retain_font(GuiFont font);
         int type = clip_convert_selection(&str, &llen, &clip_star);
         if (type < 0)
             return NO;
-        
+
         // TODO: Avoid overflow.
         int len = (int)llen;
 #ifdef FEAT_MBYTE
@@ -1373,7 +1380,7 @@ extern GuiFont gui_mch_retain_font(GuiFont font);
         NSArray *types = [NSArray arrayWithObject:NSStringPboardType];
         [pboard declareTypes:types owner:nil];
         BOOL ok = [pboard setString:string forType:NSStringPboardType];
-    
+
         [string release];
         vim_free(str);
 
@@ -1568,7 +1575,7 @@ extern GuiFont gui_mch_retain_font(GuiFont font);
 - (NSString *)waitForReplyOnPort:(int)port
 {
     ASLogDebug(@"port=%d", port);
-    
+
     NSConnection *conn = [self connectionForServerPort:port];
     if (!conn)
         return nil;
@@ -2348,7 +2355,7 @@ static void netbeansReadCallback(CFSocketRef s,
     }
 
     if (timeInterval > 0) {
-        blinkTimer = 
+        blinkTimer =
             [[NSTimer scheduledTimerWithTimeInterval:timeInterval target:self
                                             selector:@selector(blinkTimerFired:)
                                             userInfo:nil repeats:NO] retain];

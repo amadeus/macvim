@@ -2935,11 +2935,11 @@ $(APPDIR)/Contents:
 ### MacVim GUI
 .PHONY: macvim macvimclean
 macvim: $(VIMTARGET)
-	xcodebuild -project MacVim/MacVim.xcodeproj $(XCODEFLAGS)
+	xcodebuild -project MacVim/$(XCODEPROJ) $(XCODEFLAGS)
 
 macvimclean:
 	if test -d MacVim; then \
-		xcodebuild -project MacVim/MacVim.xcodeproj clean; \
+		xcodebuild -project MacVim/$(XCODEPROJ) clean; \
 	fi
 
 
